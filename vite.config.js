@@ -8,7 +8,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // registerType: 'autoUpdate',
+      srcDir: 'public',
+      filename: 'sw.js',
+      strategies: 'injectManifest',
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
       },

@@ -4,17 +4,17 @@ import './index.css';
 import App from './App.jsx';
 // import { registerSW } from 'virtual:pwa-register';
 
+// const updateSW = registerSW({
+//   onNeedRefresh() {
+//     console.log('New service worker available, please refresh the page.');
+//   },
+//   onOfflineReady() {
+//     console.log('App is ready to work offline.');
+//   },
+// });
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
   </StrictMode>
 );
-
-// const updateSW = registerSW({
-//   onNeedRefresh() {
-//     console.log('New SW available!');
-//   },
-//   onOfflineReady() {
-//     console.log('App ready to work offline!');
-//   },
-// });

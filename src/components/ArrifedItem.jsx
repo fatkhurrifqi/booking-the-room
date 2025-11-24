@@ -8,8 +8,8 @@ function numberFormat(price) {
 
 function ArrifedItem({ item }) {
   return (
-    <div className="px-4 relative card group">
-      <div className="rounded-xl overflow-hidden card-shadow relative" style={{ width: '287px', height: '386px' }}>
+    <div className="relative card group px-5 sm:px-0 py-10">
+      <div className="rounded-xl overflow-hidden card-shadow relative" style={{ height: '386px' }}>
         <div className="absolute opacity-0 group-hover:opacity-100 transition duration-200 flex items-center justify-center w-full h-full bg-black bg-opacity-35">
           <div className="bg-white text-black rounded-full w-16 h-16 flex items-center justify-center">
             <svg className="fill-current" width="43" height="24" viewBox="0 0 43 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,4 +1,5 @@
 // import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Arrifed from './components/Arrifed.jsx';
 import AsideMenu from './components/AsideMenu.jsx';
@@ -7,9 +8,28 @@ import Clients from './components/Clients.jsx';
 import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
+import Offline from './components/Offline.jsx';
 
 function App() {
-  // const [items, setItems] = useState([]);
+  // const [items, setItems] = React.useState([]);
+  const [offlineStatus, setOfflineStatus] = React.useState(!navigator.onLine);
+
+  React.useEffect(() => {
+    // Set awal
+    setOfflineStatus(!navigator.onLine);
+
+    function handleStatus() {
+      setOfflineStatus(!navigator.onLine);
+    }
+
+    window.addEventListener('online', handleStatus);
+    window.addEventListener('offline', handleStatus);
+
+    return () => {
+      window.removeEventListener('online', handleStatus);
+      window.removeEventListener('offline', handleStatus);
+    };
+  }, []);
 
   const newItems = [
     { id: 1, name: 'Cangkir Mauttie', price: 25, image: '/images/content/image-arrived-1.png' },
@@ -21,6 +41,7 @@ function App() {
 
   return (
     <>
+      {offlineStatus && <Offline />}
       <Header />
       <Hero />
       <Browse />

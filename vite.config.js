@@ -8,10 +8,10 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      // registerType: 'autoUpdate',
-      srcDir: 'public',
-      filename: 'sw.js',
-      strategies: 'injectManifest',
+      registerType: 'autoUpdate',
+      // srcDir: 'src',
+      // filename: 'sw.js',
+      strategies: 'generateSW',
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
       },
@@ -19,14 +19,50 @@ export default defineConfig({
       manifest: {
         name: 'Luxspace Ecommerce',
         short_name: 'Luxspace',
-        start_url: '/',
+        start_url: '.',
         display: 'standalone',
         background_color: '#ffffff',
+        theme_color: '#000000',
         icons: [
+          // {
+          //   src: '/images/favicon.ico',
+          //   type: 'image/x-icon',
+          //   sizes: '48x48',
+          // },
           {
-            src: '/images/favicon.ico',
-            sizes: '48x48',
-            type: 'image/x-icon',
+            src: 'icon-120.png',
+            sizes: '120x120',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-144.png',
+            sizes: '144x144',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-152.png',
+            sizes: '152x152',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-167.png',
+            sizes: '167x167',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-180.png',
+            sizes: '180x180',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
           },
         ],
       },

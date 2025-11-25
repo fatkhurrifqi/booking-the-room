@@ -1,5 +1,6 @@
-// import React, { useState, useEffect } from 'react';
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+
 import './App.css';
 import Arrifed from './components/Arrifed.jsx';
 import AsideMenu from './components/AsideMenu.jsx';
@@ -9,13 +10,14 @@ import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Offline from './components/Offline.jsx';
+import Details from './pages/Details.jsx';
+import Cart from './pages/Cart.jsx';
 
-function App() {
-  // const [items, setItems] = React.useState([]);
+function HomePage() {
   const [offlineStatus, setOfflineStatus] = React.useState(!navigator.onLine);
+  const [mode] = React.useState('light');
 
   React.useEffect(() => {
-    // Set awal
     setOfflineStatus(!navigator.onLine);
 
     function handleStatus() {
@@ -42,7 +44,7 @@ function App() {
   return (
     <>
       {offlineStatus && <Offline />}
-      <Header />
+      <Header mode={mode} />
       <Hero />
       <Browse />
       <Arrifed items={newItems} />
@@ -53,4 +55,29 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  const [cart, setCart] = React.useState(() => {
+    // Load initial cart from localStorage or empty array
+    const savedCart = localStorage.getItem('cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  React.useEffect(() => {
+    // Save cart to localStorage whenever it changes
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  function handleAddToCart(item) {
+    const currentIndex = cart.length;
+    const newCart = [...cart, { id: currentIndex + 1, item }];
+    setCart(newCart);
+  }
+
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/details/:id" element={<Details handleAddToCart={handleAddToCart} cart={cart} />} />
+      <Route path="/cart" element={<Cart cart={cart} />} />
+    </Routes>
+  );
+}

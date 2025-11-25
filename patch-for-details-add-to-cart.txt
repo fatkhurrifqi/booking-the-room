@@ -1,0 +1,6 @@
+Use this patch as a guide to replace the Add to Cart button onClick line in src/pages/Details.jsx:
+
+<<<<<<< SEARCH
+<button onClick={() => handleAddToCart(location.state)} className="transition-all duration-200 bg-pink-400 text-black focus:bg-black focus:text-pink-400 rounded-full px-8 py-3 mt-4 inline-flex">
+=======
+<button onClick={() => handleAddToCart(location.state || defaultProduct)} className="transition-all duration-200 bg-pink-400 text-black focus:bg-black focus:text-pink-400 rounded-full px-8 py-3 mt-4 inline-flex">

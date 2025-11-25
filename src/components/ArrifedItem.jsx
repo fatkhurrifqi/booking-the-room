@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function numberFormat(price) {
   const currency = Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -23,7 +25,7 @@ function ArrifedItem({ item }) {
 
       <h3 className="card-title">{item.name}</h3>
       <p className="card-price">{numberFormat(item.price)}</p>
-      <a href="details.html" className="stretched-link"></a>
+      <Link to={{ pathname: `/details/${item.id}`, state: item }} className="stretched-link"></Link>
     </div>
   );
 }
